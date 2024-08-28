@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        MAVEN_HOME = tool name: 'Default', type: 'Maven'
+        MAVEN_HOME = tool name: 'Maven', type: 'Maven'
     }
 
     stages {
@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    withMaven(maven: 'Default') {
+                    withMaven(maven: 'Maven') {
                         sh 'mvn clean install'
                     }
                 }
@@ -23,7 +23,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    withMaven(maven: 'Default') {
+                    withMaven(maven: 'Maven') {
                         sh 'mvn test'
                     }
                 }
@@ -32,7 +32,7 @@ pipeline {
         stage('Package') {
             steps {
                 script {
-                    withMaven(maven: 'Default') {
+                    withMaven(maven: 'Maven') {
                         sh 'mvn package'
                     }
                 }
