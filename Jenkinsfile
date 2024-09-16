@@ -1,7 +1,7 @@
 pipeline {
     agent any
-
-       stages {
+    
+        stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/WillieBett/Springbootkafka.git'
@@ -10,34 +10,28 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                   
-                        sh 'mvn clean install'
-                    
+                    sh 'mvn clean install'
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                    
-                        sh 'mvn test'
-                    
+                    sh 'mvn test'
                 }
             }
         }
         stage('Package') {
             steps {
                 script {
-                    
-                        sh 'mvn package'
-                    
+                    sh 'mvn package'
                 }
             }
         }
         stage('Deploy') {
             steps {
                 echo 'Deploying application...'
-                // Add deployment steps here
+                // Add deployment steps here (e.g., copying files or deploying to a server)
             }
         }
     }
