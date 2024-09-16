@@ -1,11 +1,7 @@
 pipeline {
     agent any
 
-    environment {
-        MAVEN_HOME = tool name: 'Maven', type: 'Maven'
-    }
-
-    stages {
+       stages {
         stage('Checkout') {
             steps {
                 git branch: 'main', url: 'https://github.com/WillieBett/Springbootkafka.git'
@@ -14,27 +10,27 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    withMaven(maven: 'Maven') {
+                   
                         sh 'mvn clean install'
-                    }
+                    
                 }
             }
         }
         stage('Test') {
             steps {
                 script {
-                    withMaven(maven: 'Maven') {
+                    
                         sh 'mvn test'
-                    }
+                    
                 }
             }
         }
         stage('Package') {
             steps {
                 script {
-                    withMaven(maven: 'Maven') {
+                    
                         sh 'mvn package'
-                    }
+                    
                 }
             }
         }
